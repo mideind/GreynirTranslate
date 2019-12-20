@@ -1,0 +1,230 @@
+#+TITLE: Ítarefni um vélþýðingar (og almenna málvinnslu) 
+#+SUBTITLE: með tauganetum
+#+AUTHOR: Haukur Barri Símonarson
+#+LANGUAGE: is
+# #+OPTIONS: toc:nil date:nil author:nil
+#+OPTIONS: date:nil
+#+EXCLUDE_TAGS: :noexport: :haukur:
+
+#+LaTeX_CLASS: article
+#+LATEX_HEADER: \usepackage[icelandic]{babel}
+
+#+LATEX_HEADER: \usepackage[round]{natbib}
+#+LATEX_HEADER: \usepackage{bookmark}
+#+LATEX_HEADER: \usepackage{titling}
+#+LATEX_HEADER: \usepackage[bottom=1.2in, top=1.2in, left=1.1in, right=1.2in]{geometry}
+
+# #+bibliographystyle: unsrtnat
+#+bibliography: ~/Documents/bibliography/references.bib
+
+# #+LATEX: \vspace{-6.0em}
+
+* Orðagreypingar
+** Heil orð
+  - Word2vec (cite:mikolovEfficientEstimationWord2013a) \\
+    Mikolov, T ()., Chen, K., Corrado, G., & Dean, J., Efficient Estimation of Word Representations in Vector Space, arXiv:1301.3781 [cs], (),  (2013). 
+  - GLoVe (cite:penningtonGloveGlobalVectors2014) \\
+    Pennington, J., Socher, R., & Manning, C., Glove: Global Vectors for Word Representation, In , Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP) (pp. 1532–1543) (2014). Doha, Qatar: Association for Computational Linguistics.
+  - Fasttext (cite:bojanowskiEnrichingWordVectors2016) \\
+    Bojanowski, P., Grave, E., Joulin, A., & Mikolov, T., Enriching Word Vectors with Subword Information, arXiv:1607.04606 [cs], (),  (2016). 
+** Orðhlutar (hlutstrengir, ekki nauðsynlega skv. orðmyndun)
+    - Orflísar (Subword) með BPE (cite:sennrichNeuralMachineTranslation2015) \\
+      Sennrich, R., Haddow, B., & Birch, A., Neural Machine Translation of Rare Words with Subword Units, arXiv:1508.07909 [cs], (),  (2015). 
+    - Orðbútar (Wordpiece) með sennileika (cite:schusterJapaneseKoreanVoice2012) \\
+      Schuster, M., & Nakajima, K., Japanese and Korean voice search, In , 2012 {IEEE} {International} {Conference} on {Acoustics}, {Speech} and {Signal} {Processing} ({ICASSP}) (pp. 5149–5152) (2012). Kyoto, Japan: IEEE.
+    - Málsgreinaflísar (SentencePiece) (cite:kudoSentencePieceSimpleLanguage2018) \\
+      Kudo, T., & Richardson, J., Sentencepiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing, arXiv:1808.06226 [cs], (),  (2018). 
+    - Reglun orðflísa (cite:kudoSubwordRegularizationImproving2018) \\
+      Kudo, T., Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates, In , Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 66–75) (2018). Melbourne, Australia: Association for Computational Linguistics.
+    - Betri reglun orðflísa (cite:provilkovBPEDropoutSimpleEffective2019) \\
+      Provilkov, I., Emelianenko, D., & Voita, E., BPE-Dropout: Simple and Effective Subword Regularization, arXiv:1910.13267 [cs], (),  (2019). 
+    - Líkanið velur inntaksskiptingu (stafi, orðflísar, orð) (cite:kreutzerLearningSegmentInputs2018) \\
+      Kreutzer, J., & Sokolov, A., Learning to Segment Inputs for NMT Favors Character-Level Processing, arXiv:1810.01480 [cs, stat], (),  (2018). 
+** Óevklíðsk (fangar betur stigveldi)
+   - (cite:tifreaPoincarGloVeHyperbolic2018) \\
+     Tifrea, A., Bécigneul, G., & Ganea, O., Poincar\textbackslash’e GloVe: Hyperbolic Word Embeddings, arXiv:1810.06546 [cs], (),  (2018). 
+** Ítarefni                                                          :haukur:
+  - Forþjálfaðar orðagreypingar fyrir vélþýðingar (cite:qiWhenWhyAre2018) \\
+    Qi, Y., Sachan, D. S., Felix, M., Padmanabhan, S. J., & Neubig, G., When and Why are Pre-trained Word Embeddings Useful for Neural Machine Translation?, arXiv:1804.06323 [cs], (),  (2018). 
+  - Forþjálfaðar orðagreypingar fyrir vélþýðingar (cite:qiWhenWhyAre2018) \\
+    Qi, Y., Sachan, D. S., Felix, M., Padmanabhan, S. J., & Neubig, G., When and Why are Pre-trained Word Embeddings Useful for Neural Machine Translation?, arXiv:1804.06323 [cs], (),  (2018). 
+  - BPE-dropout (cite:provilkovBPEDropoutSimpleEffective2019) \\
+    Provilkov, I., Emelianenko, D., & Voita, E., BPE-Dropout: Simple and Effective Subword Regularization, arXiv:1910.13267 [cs], (),  (2019). 
+* Málsgreinagreypingar
+  - Skip-thought (cite:kirosSkipThoughtVectors2015) \\
+    Kiros, R., Zhu, Y., Salakhutdinov, R., Zemel, R. S., Torralba, A., Urtasun, R., & Fidler, S., Skip-Thought Vectors, arXiv:1506.06726 [cs], (),  (2015). 
+  - ULMFit (cite:howardUniversalLanguageModel2018b)
+    Kiros, R., Zhu, Y., Salakhutdinov, R., Zemel, R. S., Torralba, A., Urtasun, R., & Fidler, S., Skip-Thought Vectors, arXiv:1506.06726 [cs], (),  (2015). 
+  - Sent2vec (cite:pagliardiniUnsupervisedLearningSentence2018) \\
+    Pagliardini, M., Gupta, P., & Jaggi, M., Unsupervised Learning of Sentence Embeddings using Compositional n-Gram Features, Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers), (), 528–540 (2018).  http://dx.doi.org/10.18653/v1/N18-1049
+  - InferSent (cite:conneauSupervisedLearningUniversal2017) \\
+    Conneau, A., Kiela, D., Schwenk, H., Barrault, L., & Bordes, A., Supervised Learning of Universal Sentence Representations from Natural Language Inference Data, arXiv:1705.02364 [cs], (),  (2017). 
+  - ELMo (cite:petersDeepContextualizedWord2018) \\
+    Peters, M. E., Neumann, M., Iyyer, M., Gardner, M., Clark, C., Lee, K., & Zettlemoyer, L., Deep contextualized word representations, arXiv:1802.05365 [cs], (),  (2018). 
+  - BERT (cite:devlinBERTPretrainingDeep2018a) \\
+    Devlin, J., Chang, M., Lee, K., & Toutanova, K., BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding, arXiv:1810.04805 [cs], (),  (2018). 
+  - Samanburður greypinga (cite:peroneEvaluationSentenceEmbeddings2018) \\
+    Perone, C. S., Silveira, R., & Paula, T. S., Evaluation of sentence embeddings in downstream and linguistic probing tasks, arXiv:1806.06259 [cs], (),  (2018). 
+  - (cite:conneauWhatYouCan2018) \\
+    Conneau, A., Kruszewski, G., Lample, G., Barrault, L., & Baroni, M., What you can cram into a single vector: Probing sentence embeddings for linguistic properties, arXiv:1805.01070 [cs], (),  (2018). 
+  - (cite:kimProbingWhatDifferent2019) \\
+    Kim, N., Patel, R., Poliak, A., Wang, A., Xia, P., McCoy, R. T., Tenney, I., …, Probing What Different NLP Tasks Teach Machines about Function Word Comprehension, arXiv:1904.11544 [cs], (),  (2019). 
+** Sérstaklega verið að taka fyrir þýðingarlíkön
+   - (cite:shiDoesStringBasedNeural2016) \\
+     Shi, X., Padhi, I., & Knight, K., Does String-Based Neural MT Learn Source Syntax?, In , Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing (pp. 1526–1534) (2016). Austin, Texas: Association for Computational Linguistics.
+   - (cite:raganatoAnalysisEncoderRepresentations2018) \\
+     Raganato, A., & Tiedemann, J., An Analysis of Encoder Representations in Transformer-Based Machine Translation, In ,  (pp. 287–297) (2018). : .
+** Með risastórum líkönum
+   - ROBERTa (cite:liuRoBERTaRobustlyOptimized2019) \\
+     Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., …, Roberta: A Robustly Optimized BERT Pretraining Approach, arXiv:1907.11692 [cs], (),  (2019). 
+   - ALBERT (cite:anonymousALBERTLiteBERT2019) \\
+     Anonymous, , ALBERT: A Lite BERT for Self-supervised Learning of Language Representations, , (),  (2019). 
+   - (cite:ruderTransferLearningNatural2019) \\
+     Ruder, S., Peters, M. E., Swayamdipta, S., & Wolf, T., Transfer Learning in Natural Language Processing, In , Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Tutorials (pp. 15–18) (2019). Minneapolis, Minnesota: Association for Computational Linguistics.
+   - Rannsókn á innri framsetningu í BERT (cite:tenneyBERTRediscoversClassical2019) \\
+     Tenney, I., Das, D., & Pavlick, E., BERT Rediscovers the Classical NLP Pipeline, arXiv:1905.05950 [cs], (),  (2019). 
+** Talnalæsi
+   - (cite:wallaceNLPModelsKnow2019) \\
+     Wallace, E., Wang, Y., Li, S., Singh, S., & Gardner, M., Do NLP Models Know Numbers? Probing Numeracy in Embeddings, , (),  (2019). 
+* Líkön (og arkítektúr)
+** Runu-í-runu líkön
+   - (cite:bahdanauNeuralMachineTranslation2014) \\
+     Bahdanau, D., Cho, K., & Bengio, Y., Neural Machine Translation by Jointly Learning to Align and Translate, arXiv:1409.0473 [cs, stat], (),  (2014). 
+   - (cite:sutskeverSequenceSequenceLearning2014) \\
+     Sutskever, I., Vinyals, O., & Le, Q. V., Sequence to Sequence Learning with Neural Networks, arXiv:1409.3215 [cs], (),  (2014). 
+   - (cite:luongEffectiveApproachesAttentionbased2015)  \\
+     Luong, M., Pham, H., & Manning, C. D., Effective Approaches to Attention-based Neural Machine Translation, arXiv:1508.04025 [cs], (),  (2015). 
+   - Mest notaða líkanið fyrir þýðingu þessa stundina (cite:vaswaniAttentionAllYou2017)  \\
+     Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., …, Attention Is All You Need, arXiv:1706.03762 [cs], (),  (2017). 
+   - (cite:gehringConvolutionalSequenceSequence2017) \\
+     Gehring, J., Auli, M., Grangier, D., Yarats, D., & Dauphin, Y. N., Convolutional Sequence to Sequence Learning, arXiv:1705.03122 [cs], (),  (2017). 
+   - Greining mikilvægra þátta hinna þriggja arkítektúrfjölskyldna sem notaðir eru fyrir runu-í-runu líkön (cite:chenBestBothWorlds2018) \\
+     Chen, M. X., Firat, O., Bapna, A., Johnson, M., Macherey, W., Foster, G., Jones, L., …, The Best of Both Worlds: Combining Recent Advances in Neural Machine Translation, In , Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 76–86) (2018). Melbourne, Australia: Association for Computational Linguistics.
+   - Öflug forþjálfun runu-í-runu líkana (cite:songMASSMaskedSequence2019) \\
+     Song, K., Tan, X., Qin, T., Lu, J., & Liu, T., MASS: Masked Sequence to Sequence Pre-training for Language Generation, arXiv:1905.02450 [cs], (),  (2019). 
+   - (cite:gargJointlyLearningAlign2019) \\
+     Garg, S., Peitz, S., Nallasamy, U., & Paulik, M., Jointly Learning to Align and Translate with Transformer Models, arXiv:1909.02074 [cs], (),  (2019). 
+   - Enn öflugri forþjálfun (cite:ruderTransferLearningNatural2019) \\
+     Ruder, S., Peters, M. E., Swayamdipta, S., & Wolf, T., Transfer Learning in Natural Language Processing, In , Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Tutorials (pp. 15–18) (2019). Minneapolis, Minnesota: Association for Computational Linguistics.
+** Áhugavert
+   - Um athygli í tauganetslíkönum (cite:brunnerIdentifiabilityTransformers2019) \\
+     Brunner, G., Liu, Y., Pascual, D., Richter, O., Ciaramita, M., & Wattenhofer, R., On Identifiability in Transformers, arXiv:1908.04211 [cs], (),  (2019). 
+
+   - GPT2 lærir óvart að þýða orð frá ensku yfir í frönsku (cite:radfordLanguageModelsAre) \\
+     Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., & Sutskever, I., Language Models are Unsupervised Multitask Learners, , (), 24 (). 
+
+* Nýting einmála gagna með samhliða gögnum
+  - (cite:sennrichImprovingNeuralMachine2015) \\
+    Sennrich, R., Haddow, B., & Birch, A., Improving Neural Machine Translation Models with Monolingual Data, arXiv:1511.06709 [cs], (),  (2015). 
+  - (cite:gulcehreUsingMonolingualCorpora2015) \\
+    Gulcehre, C., Firat, O., Xu, K., Cho, K., Barrault, L., Lin, H., Bougares, F., …, On Using Monolingual Corpora in Neural Machine Translation, arXiv:1503.03535 [cs], (),  (2015). 
+  - (cite:hoangIterativeBackTranslationNeural2018) \\
+    Hoang, V. C. D., Koehn, P., Haffari, G., & Cohn, T., Iterative Back-Translation for Neural Machine Translation, In , Proceedings of the 2nd Workshop on Neural Machine Translation and Generation (pp. 18–24) (2018). Melbourne, Australia: Association for Computational Linguistics.
+  - (cite:edunovUnderstandingBackTranslationScale2018) \\
+    Edunov, S., Ott, M., Auli, M., & Grangier, D., Understanding Back-Translation at Scale, arXiv:1808.09381 [cs], (),  (2018). 
+** Greining líkanna sem þjálfuð voru með bakþýðingu
+   - (cite:edunovEvaluationMachineTranslation2019) \\
+    Edunov, S., Ott, M., Ranzato, M., & Auli, M., On The Evaluation of Machine Translation Systems Trained With Back-Translation, arXiv:1908.05204 [cs], (),  (2019). 
+*** Hér er einnig samanburður á fleiri gervigögnum og náttúrulegum gögnum
+    - (cite:burlotUsingMonolingualData2018) \\
+      Burlot, F., & Yvon, F., Using Monolingual Data in Neural Machine Translation: a Systematic Study, In , WMT (pp. ) (2018). : .
+    - (cite:parkBuildingNeuralMachine2017) \\
+      Park, J., Song, J., & Yoon, S., Building a Neural Machine Translation System Using Only Synthetic Parallel Data, arXiv:1704.00253 [cs], (),  (2017). 
+** Þýðingarlíkan með ítraðri bakþýðingu
+   - (cite:hoangIterativeBackTranslationNeural2018) \\
+    Hoang, V. C. D., Koehn, P., Haffari, G., & Cohn, T., Iterative Back-Translation for Neural Machine Translation, In , Proceedings of the 2nd Workshop on Neural Machine Translation and Generation (pp. 18–24) (2018). Melbourne, Australia: Association for Computational Linguistics.
+** Nykurþjálfun þýðingarlíkanna, íhugunarnet, o.fl.
+   - (cite:hassanAchievingHumanParity2018) \\
+    Hassan, H., Aue, A., Chen, C., Chowdhary, V., Clark, J., Federmann, C., Huang, X., …, Achieving Human Parity on Automatic Chinese to English News Translation, arXiv:1803.05567 [cs], (),  (2018). 
+  
+** Annað
+   - (cite:caswellTaggedBackTranslation2019) \\
+    Caswell, I., Chelba, C., & Grangier, D., Tagged Back-Translation, In , Proceedings of the Fourth Conference on Machine Translation (Volume 1: Research Papers) (pp. 53–63) (2019). Florence, Italy: Association for Computational Linguistics.
+  
+* Þýðingar án samhliða gagna
+** Orðaþýðingar án samhliða gagna
+   - (cite:conneauWordTranslationParallel2017) \\
+    Conneau, A., Lample, G., Ranzato, M., Denoyer, L., & Jégou, H., Word Translation Without Parallel Data, arXiv:1710.04087 [cs], (),  (2017). 
+** Þýðingar án samhliða gagna
+   Með styrkingarlærdómi
+   - (cite:heDualLearningMachine2016) \\
+    He, D., Xia, Y., Qin, T., Wang, L., Yu, N., Liu, T., & Ma, W., Dual Learning for Machine Translation, In D. D. Lee, M. Sugiyama, U. V. Luxburg, I. Guyon, & R. Garnett (Eds.), Advances in Neural Information Processing Systems 29 (pp. 820–828) (2016). : Curran Associates, Inc.
+   Með ítrunaraðferð
+   - (cite:lampleUnsupervisedMachineTranslation2017) \\
+    Lample, G., Conneau, A., Denoyer, L., & Ranzato, M., Unsupervised Machine Translation Using Monolingual Corpora Only, arXiv:1711.00043 [cs], (),  (2017). 
+   Með forþjálfun mállíkans
+   - (cite:songMASSMaskedSequence2019) \\
+    Song, K., Tan, X., Qin, T., Lu, J., & Liu, T., MASS: Masked Sequence to Sequence Pre-training for Language Generation, arXiv:1905.02450 [cs], (),  (2019). 
+* Yfirfærður lærdómur (transfer learning)
+  - (cite:howardUniversalLanguageModel2018b) \\
+    Howard, J., & Ruder, S., Universal Language Model Fine-tuning for Text Classification, arXiv:1801.06146 [cs, stat], (),  (2018). 
+  - Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (cite:raffelExploringLimitsTransfer2019)
+    Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou, Y., …, Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer, arXiv:1910.10683 [cs, stat], (),  (2019). 
+* Markviss úrtök og annars konar gervigögn
+  - (cite:fadaeeDataAugmentationLowResource2017) \\
+    Fadaee, M., Bisazza, A., & Monz, C., Data Augmentation for Low-Resource Neural Machine Translation, Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), (), 567–573 (2017).  http://dx.doi.org/10.18653/v1/P17-2090
+  - (cite:fadaeeBackTranslationSamplingTargeting2018) \\
+    Fadaee, M., & Monz, C., Back-Translation Sampling by Targeting Difficult Words in Neural Machine Translation, arXiv:1808.09006 [cs], (),  (2018). 
+  - (cite:wangSwitchOutEfficientData2018) \\
+    Wang, X., Pham, H., Dai, Z., & Neubig, G., Switchout: an Efficient Data Augmentation Algorithm for Neural Machine Translation, arXiv:1808.07512 [cs], (),  (2018). 
+
+* Óþekkt orð / sjaldgæf orð
+  Sér for- og eftirvinnsla
+  - (cite:luongAddressingRareWord2015) \\
+    Luong, T., Sutskever, I., Le, Q., Vinyals, O., & Zaremba, W., Addressing the Rare Word Problem in Neural Machine Translation, In , Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 1: Long Papers) (pp. 11–19) (2015). Beijing, China: Association for Computational Linguistics.
+  Athygli notað til að rekja óþekkta orðið
+  - (cite:gulcehreUsingMonolingualCorpora2015) \\
+    Gulcehre, C., Firat, O., Xu, K., Cho, K., Barrault, L., Lin, H., Bougares, F., …, On Using Monolingual Corpora in Neural Machine Translation, arXiv:1503.03535 [cs], (),  (2015). 
+  Brúun eða nálgun sjaldgæfra (langra) orða
+  - (cite:schickRareWordsMajor2019) \\
+    Schick, T., & Schütze, H., Rare Words: A Major Problem for Contextualized Embeddings And How to Fix it by Attentive Mimicking, arXiv:1904.06707 [cs], (),  (2019). 
+  
+  # gulcehre pointer network 2016
+* Skorðuð þýðing og aðlögun að óðali
+** Aðlögun að óðali
+    - (cite:kobusDomainControlNeural2016) \\
+     Kobus, C., Crego, J., & Senellart, J., Domain Control for Neural Machine Translation, arXiv:1612.06140 [cs], (),  (2016). 
+    - (cite:chuEmpiricalComparisonSimple2017)  \\
+     Chu, C., Dabre, R., & Kurohashi, S., An Empirical Comparison of Simple Domain Adaptation Methods for Neural Machine Translation, arXiv:1701.03214 [cs], (),  (2017). 
+    - (cite:mooreIntelligentSelectionLanguage2010)
+     Moore, R. C., & Lewis, W., Intelligent Selection of Language Model Training Data, In , Proceedings of the {ACL} 2010 {Conference} {Short} {Papers (pp. 220–224) (2010). Uppsala, Sweden: Association for Computational Linguistics.
+
+** Skorðuð þýðing
+    - (cite:liNeuralMachineTranslation2019) \\
+     Li, H., Huang, G., & Liu, L., Neural Machine Translation with Noisy Lexical Constraints, arXiv:1908.04664 [cs], (),  (2019). 
+    - (cite:postFastLexicallyConstrained2018) \\
+     Post, M., & Vilar, D., Fast Lexically Constrained Decoding with Dynamic Beam Allocation for Neural Machine Translation, arXiv:1804.06609 [cs], (),  (2018). 
+    - (cite:sennrichControllingPolitenessNeural2016) \\
+     Sennrich, R., Haddow, B., & Birch, A., Controlling Politeness in Neural Machine Translation via Side Constraints, In , Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pp. 35–40) (2016). San Diego, California: Association for Computational Linguistics.
+    - (cite:chenGuidedAlignmentTraining2016) \\
+     Chen, W., Matusov, E., Khadivi, S., & Peter, J., Guided Alignment Training for Topic-Aware Neural Machine Translation, arXiv:1607.01628 [cs], (),  (2016). 
+    - (cite:haslerNeuralMachineTranslation2018) \\
+     Hasler, E., De Gispert, A., Iglesias, G., & Byrne, B., Neural Machine Translation Decoding with Terminology Constraints, arXiv:1805.03750 [cs], (),  (2018). 
+    - (cite:hokampLexicallyConstrainedDecoding2017) \\
+     Hokamp, C., & Liu, Q., Lexically Constrained Decoding for Sequence Generation Using Grid Beam Search, arXiv:1704.07138 [cs], (),  (2017). 
+* Eimun og þjöppun
+  - (cite:hintonDistillingKnowledgeNeural2015) \\
+    Hinton, G., Vinyals, O., & Dean, J., Distilling the Knowledge in a Neural Network, arXiv:1503.02531 [cs, stat], (),  (2015). 
+  - (cite:kimSequenceLevelKnowledgeDistillation2016) \\
+    Kim, Y., & Rush, A. M., Sequence-Level Knowledge Distillation, arXiv:1606.07947 [cs], (),  (2016). 
+  - (cite:jiaoTinyBERTDistillingBERT2019) \\
+    Jiao, X., Yin, Y., Shang, L., Jiang, X., Chen, X., Li, L., Wang, F., …, Tinybert: Distilling BERT for Natural Language Understanding, arXiv:1909.10351 [cs], (),  (2019). 
+  - (cite:liuImprovingMultiTaskDeep2019) \\
+    Liu, X., He, P., Chen, W., & Gao, J., Improving Multi-Task Deep Neural Networks via Knowledge Distillation for Natural Language Understanding, , (),  (2019). 
+    
+** Fyrir þýðingu sérstaklega
+   - (cite:dakwaleImprovingNeuralMachine) \\
+     Dakwale, P., & Monz, C., Improving Neural Machine Translation Using Noisy Parallel Data through Distillation, , 1(), 10 (). 
+   - Margmála þýðingarlíkan smíðað með því að eima saman mörg 1-1 þýðingarlíkön (cite:tanMultilingualNeuralMachine2018) \\
+     Tan, X., Ren, Y., He, D., Qin, T., Zhao, Z., & Liu, T., Multilingual Neural Machine Translation with Knowledge Distillation, , (),  (2018). 
+
+** Þjöppun
+   - (cite:cheongTransformersZipCompressing) \\
+    Cheong, R., & Daniel, R., Transformers.zip: Compressing Transformers with Pruning and Quantization, , (), 13 (). 
+   - (cite:galeStateSparsityDeep2019) \\
+    Gale, T., Elsen, E., & Hooker, S., The State of Sparsity in Deep Neural Networks, arXiv:1902.09574 [cs, stat], (),  (2019). 
+   - Kerfi í praxís (cite:senellartOpenNMTSystemDescription2018) \\
+    Senellart, J., Zhang, D., Wang, B., Klein, G., Ramatchandirin, J., Crego, J., & Rush, A., Opennmt System Description for WNMT 2018: 800 words/sec on a single-core CPU, In , Proceedings of the 2nd Workshop on Neural Machine Translation and Generation (pp. 122–128) (2018). Melbourne, Australia: Association for Computational Linguistics.
+
+bibliographystyle:unsrtnat
+bibliography:~/Documents/bibliography/references.bib
