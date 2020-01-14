@@ -11,15 +11,18 @@ class SegmentDeduplifier:
     """Deduplify sentence pairs using Tilde's approach (Tilde 2018)
        Along with a few others."""
 
-    def __init__(self, case=False):
+    def __init__(self, case=False, concat=False):
         self._set = set()
         self._case = case
+        self._concat = concat
 
     def preprocess(self, segment):
         if not self._case:
             segment = segment.lower()
         segment = DIGIT_PROG.sub("0", segment)
         segment = PUNCT_PROG.sub(" ", segment)
+
+        space_subst = "" if self._concat else " "
         segment = SPACE_PROG.sub(" ", segment)
         return segment
 
@@ -33,8 +36,10 @@ class SegmentDeduplifier:
 class TSVDeduplifier:
     """Deduplify CSV such that each field must be unique."""
 
-    def __init__(self, case=False):
-        self._segment_deduplifiers = [SegmentDeduplifier(case=case) for _ in range(100)]
+    def __init__(self, case=False, concat=False):
+        self._segment_deduplifiers = [
+            SegmentDeduplifier(case=case, concat=concat) for _ in range(100)
+        ]
 
     def is_unique(self, line):
         segments = line.strip("\n").split("\t")
@@ -43,8 +48,15 @@ class TSVDeduplifier:
             is_unique = is_unique and deduplifier.is_unique(segment)
         return is_unique
 
-def comm_naive(file_keep, file_remove, invert=False, fuzzy=False, case=False):
-    deduplifier = SegmentDeduplifier(case=case)
+def dedup_files(
+    file_keep,
+    file_remove,
+    invert=False,
+    fuzzy=False,
+    case=False,
+    concat=False,
+):
+    deduplifier = SegmentDeduplifier(case=case, concat=concat)
     def split_and_preprocess(line):
         parts = line.strip("\n").split("\t")
         if fuzzy:
@@ -114,15 +126,22 @@ def main():
         action="store_true",
         help="Use case-sensitive comparison",
     )
+    opts.add_argument(
+        "--concat",
+        dest="concat",
+        action="store_true",
+        help="Remove spaces between words",
+    )
 
     args = parser.parse_args()
 
-    comm_naive(
+    dedup_files(
         args.file_keep,
         args.file_remove,
         args.invert,
         args.fuzzy,
         args.case,
+        args.concat,
     )
 
 
