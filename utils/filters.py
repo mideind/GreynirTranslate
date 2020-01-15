@@ -25,8 +25,8 @@ from symbols import (
 import tokenizer
 
 _PROJECT_DIR = os.path.dirname(os.path.realpath("__file__"))
-# _ENIS_VOCAB_PATH = "/home/haukur/github/Reynir/resources/vocab.enis.16384.subwords"
-# _TMP_DIR = "/tmp/filters"
+_ENIS_VOCAB_PATH = "/home/haukur/github/Reynir/resources/vocab.enis.16384.subwords"
+_TMP_DIR = "/tmp/filters"
 
 T2T_AVAILABLE = True
 try:
@@ -788,7 +788,7 @@ class Pipeline:
             print(msg)
 
 
-class SmallPipeline(Pipeline):
+class MinimalPipeline(Pipeline):
 
     counter = dict()
     _fns = [
@@ -808,6 +808,7 @@ class SmallPipeline(Pipeline):
         replace_dashes,
         merge_spaces,
         fix_ice_quotes,
+        wrong_quotes,
         ### filters
         bullet_mismatch,
         quote_mismatch,
@@ -833,11 +834,12 @@ def do_pipeline(
     **kwargs
 ):
     examples = lines_to_examples(in_file)
-    for ex in Pipeline.run(examples, view_function=view_function, inverted=inverted):
+    pipeline = MinimalPipeline
+    for ex in pipeline.run(examples, view_function=view_function, inverted=inverted):
         if not quiet and view_function is None:
             print("\t".join([ex["en"], ex["is"]]), file=out_file)
     if summary:
-        Pipeline.summarize_counter()
+        pipeline.summarize_counter()
 
 
 def lines_to_examples(lines):
